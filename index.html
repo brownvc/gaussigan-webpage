@@ -1,225 +1,226 @@
 ---
 redirect_from: gaussigan/
 ---
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
- 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- 	<title>GaussiGAN (BMVC/CVPRW 2021) and Object Stamps (CVPRW 2020)</title>
+  <title>GaussiGAN (BMVC 2021) and Generating Object Stamps (AI4CC 2020)</title>
 
- 	<link rel="stylesheet" href="./css/fonts.css" type="text/css" charset="utf-8">
- 	<link rel="stylesheet" href="./css/normalize.css" type="text/css" charset="utf-8">
- 	<link rel="stylesheet" href="./css/main.css" type="text/css" charset="utf-8">
- 	<link rel="stylesheet" href="./css/jht.css" type="text/css" charset="utf-8">
+  <!-- Brown brand fonts (Minion 3 + Freight Sans), the lab's Adobe Fonts kit. -->
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+  <link rel="stylesheet" href="https://use.typekit.net/diw5pgv.css">
 
-   	<script type="text/javascript" src="./js/vendor/hiddenemail.js"></script>
+  <!-- Shared BVC project-page styles + JS (bar, logo registry, theme). -->
+  <link rel="stylesheet" href="https://visual.cs.brown.edu/projects/shared/project.css">
+  <script defer src="https://visual.cs.brown.edu/projects/shared/project.js"></script>
 
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9JPW2TVD5"></script>
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-
-	gtag('config', 'G-F9JPW2TVD5');
-	</script>
+  <!-- Pre-paint theme: apply the stored/OS choice before first render (no
+       flash). Same localStorage 'theme' key + attribute as visual.cs.brown.edu. -->
+  <script>
+    (function () {
+      var t; try { t = localStorage.getItem('theme'); } catch (e) {}
+      var dark = t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.setAttribute('data-bs-theme', dark ? 'dark' : 'light');
+    })();
+  </script>
 </head>
 
-<body style="max-width: none;">
+<body>
+  <!-- The BVC bar (crest, section links, social icons, theme toggle) is
+       injected by the shared project.js. -->
 
-	<div class="right-column" style="max-width: 45em; margin: auto; margin-top: 3em">
+  <main class="project">
 
-		<h1>GaussiGAN: Controllable Image Synthesis with 3D Gaussians from Unposed Silhouettes</h1>
+    <!-- ==================== Paper 1: GaussiGAN ==================== -->
 
-		<p class="phototext" style="max-width: 45em;">
-		<a href="https://yamejjati.me/">Youssef A. Mejjati</a>, <a href="http://www.isamilefchik.com/">Isa Milefchik</a>, <a href="https://skylion007.github.io/">Aaron Gokaslan</a>, <a href="http://www.oliverwang.info/">Oliver Wang</a>, <a href="https://sites.google.com/view/kimki">Kwang In Kim</a>, <a href="http://www.jamestompkin.com/">James Tompkin</a>
-    	<br><br>
-		<a href="http://www.bmvc2021.com/">BMVC 2021</a> + 
-		<a href="http://visual.cs.brown.edu/aicc2021/">CVPRW AI for Content Creation 2021</a>
-		</p>
+    <h1 class="project-title">
+      GaussiGAN
+      <span class="subtitle">Controllable Image Synthesis with 3D Gaussians from Unposed Silhouettes</span>
+    </h1>
+    <p class="venue">British Machine Vision Conference (BMVC) + AI for Content Creation (AI4CC) @ CVPR, 2021</p>
 
-		<video src="assets/gaussigan_teaser.mp4" autoplay loop controls class="center"></video>
+    <div class="authors">
+      <span class="author"><a href="https://yamejjati.me/" target="_blank" rel="noopener">Youssef A. Mejjati</a>,</span>
+      <span class="author"><a href="http://www.isamilefchik.com/" target="_blank" rel="noopener">Isa Milefchik</a>,</span>
+      <span class="author"><a href="https://skylion007.github.io/" target="_blank" rel="noopener">Aaron Gokaslan</a>,</span>
+      <span class="author"><a href="http://www.oliverwang.info/" target="_blank" rel="noopener">Oliver Wang</a>,</span>
+      <span class="author"><a href="https://sites.google.com/view/kimki" target="_blank" rel="noopener">Kwang In Kim</a>,</span>
+      <span class="author"><a href="https://www.jamestompkin.com/" target="_blank" rel="noopener">James Tompkin</a></span>
+    </div>
 
-		<h2>Abstract</h2>
-		<p>
-		We present an algorithm to reconstruct a coarse representation of objects from unposed multi-view 2D mask supervision. Our approach learns to represent object shape and pose with a set of self-supervised canonical 3D anisotropic Gaussians, via a perspective camera and a set of per-instance transforms. We show that this robustly estimates a 3D space for the camera and object, while recent state-of-the-art voxel-based baselines struggle to reconstruct either masks or textures in this setting. We show results on synthetic datasets with realistic lighting, and demonstrate an application of object insertion. This helps move towards structured representations that handle more real-world variation in learned object reconstruction.
-		</p>
+    <nav class="resource-row">
+      <a href="https://arxiv.org/abs/2106.13215">arXiv</a>
+      <a href="#paper">Paper</a>
+      <a href="#code">Code</a>
+      <a href="https://github.com/brownvc/GaussiGAN-flask-app">App</a>
+      <a href="#video">Video</a>
+    </nav>
 
-		<table style="min-width: 625px; margin: auto; text-align: center;">
-			<tbody>
-				<tr style="vertical-align: top;">
-					<td>
-						<a href="https://arxiv.org/abs/2106.13215" target="_blank"><img class="teaser-image" width="100px" src="assets/gaussigan_paper.png"></a>
-						<br>
-						<a href="assets/BMVC_2021___Mejjati_GaussiGAN_Controllable_Image_Synthesis_with_3D_Gaussians_from_Unposed_Silhouettes.pdf" target="_blank">BMVC (10 pages)</a>
-						<br>
-						<a href="assets/CVPRW_AICC_2021___Mejjati_GaussiGAN_Controllable_Image_Synthesis_with_3D_Gaussians_from_Unposed_Silhouettes.pdf" target="_blank">CVPRW (4 pages)</a>
-						<br>
-						<a href="https://arxiv.org/abs/2106.13215" target="_blank">arXiv (8+ pages)</a>
-					</td>
-					<td>
-						<a href="assets/BMVC_2021___Mejjati_GaussiGAN_Controllable_Image_Synthesis_with_3D_Gaussians_from_Unposed_Silhouettes___Supplemental.zip" target="_blank"><img width="100px" src="assets/zip.png"></a>
-						<br>
-						<a href="assets/BMVC_2021___Mejjati_GaussiGAN_Controllable_Image_Synthesis_with_3D_Gaussians_from_Unposed_Silhouettes___Supplemental.zip" target="_blank">BMVC Supplemental<br>Paper + Video</a>
-					</td>
-					<td>
-						<a href="https://github.com/AlamiMejjati/GaussiGAN"><img class="teaser-image" width="100px" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"></a>
-						<br>
-						<a href="https://github.com/AlamiMejjati/GaussiGAN" target="_blank">Code + data <br> + models</a>
-					</td>
-					<td>
-						<a href="https://github.com/brownvc/GaussiGAN-flask-app"><img class="teaser-image" width="100px" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"></a>
-						<br>
-						<a href="https://github.com/brownvc/GaussiGAN-flask-app" target="_blank">Interactive app <br> (Flask)</a>
-					</td>
-					
-			</tr>
-			</tbody>
-		</table>
-		<br>
+    <figure class="teaser">
+      <video src="./assets/gaussigan_teaser.mp4" autoplay muted loop playsinline></video>
+    </figure>
 
-		<video src="assets/gaussigan_video_720p.mp4" controls poster="assets/genobjectstamps_videoposter.jpg" class="center"></video>
-		<a href="assets/gaussigan_video_720p.mp4">Video MP4</a>
+    <section id="abstract-section">
+      <h2 id="abstract">Abstract</h2>
+      <p>
+        We present an algorithm to reconstruct a coarse representation of objects from unposed multi-view 2D mask supervision. Our approach learns to represent object shape and pose with a set of self-supervised canonical 3D anisotropic Gaussians, via a perspective camera and a set of per-instance transforms. We show that this robustly estimates a 3D space for the camera and object, while recent state-of-the-art voxel-based baselines struggle to reconstruct either masks or textures in this setting. We show results on synthetic datasets with realistic lighting, and demonstrate an application of object insertion. This helps move towards structured representations that handle more real-world variation in learned object reconstruction.
+      </p>
+    </section>
 
-		<br><br>
-		<a href="https://youtu.be/e-JPKe3ySZY?t=764">GaussiGAN presentation</a><br>(10 mins, YouTube) @ <a href="http://visual.cs.brown.edu/aicc2021/">AI for Content Creation @ CVPR 2021</a><br>
-		<div class="video-container">
-			<iframe src="https://www.youtube.com/embed/e-JPKe3ySZY?&start=764&end=1502" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-		</div>
+    <section id="paper-section">
+      <h2 id="paper">Paper</h2>
+      <div class="doc-row">
+        <figure>
+          <a href="https://arxiv.org/abs/2106.13215"><img src="./assets/gaussigan_paper.png" alt="GaussiGAN paper first page"></a>
+          <figcaption>Paper<br>
+            <a href="./assets/BMVC_2021___Mejjati_GaussiGAN_Controllable_Image_Synthesis_with_3D_Gaussians_from_Unposed_Silhouettes.pdf">BMVC, 10&nbsp;pages (PDF 12&nbsp;MB)</a> |
+            <a href="./assets/CVPRW_AICC_2021___Mejjati_GaussiGAN_Controllable_Image_Synthesis_with_3D_Gaussians_from_Unposed_Silhouettes.pdf">AI4CC, 4&nbsp;pages (PDF 6&nbsp;MB)</a> |
+            <a href="https://arxiv.org/abs/2106.13215">arXiv, 8+&nbsp;pages</a>
+          </figcaption>
+        </figure>
+        <figure>
+          <a href="./assets/BMVC_2021___Mejjati_GaussiGAN_Controllable_Image_Synthesis_with_3D_Gaussians_from_Unposed_Silhouettes___Supplemental.zip"><img src="./assets/zip.png" alt="Supplemental archive"></a>
+          <figcaption>Supplemental<br>
+            <a href="./assets/BMVC_2021___Mejjati_GaussiGAN_Controllable_Image_Synthesis_with_3D_Gaussians_from_Unposed_Silhouettes___Supplemental.zip">Paper&nbsp;+&nbsp;Video (ZIP 93&nbsp;MB)</a>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
 
-		<h2>Bibtex</h2>
-    	<PRE style="max-width: 625px; margin: auto;">@inproceedings{mejjati2021gaussigan,<br> author = {Youssef A. Mejjati and Isa Milefchik and Aaron Gokaslan and Oliver Wang and Kwang In Kim and James Tompkin},<br> title = {GaussiGAN: Controllable Image Synthesis with 3D Gaussians from Unposed Silhouettes},<br> booktitle = {British Machine Vision Conference (BMVC)},<br> month = {Nov},<br> year = {2021},<br>}
-		</PRE>
+    <section id="results-section">
+      <h2 id="results">Results</h2>
+      <video class="center" style="display:block; width:100%;" controls preload="metadata"
+             poster="./assets/gaussigan_videoposter.jpg">
+        <source src="./assets/gaussigan_video_720p.mp4" type="video/mp4">
+      </video>
+      <p class="centerContent"><a href="./assets/gaussigan_video_720p.mp4" download>Download video (MP4, 89&nbsp;MB)</a></p>
+    </section>
 
-		<br><br>
-		<hr>
+    <section id="video-section">
+      <h2 id="video">Video</h2>
+      <div class="embed">
+        <iframe src="https://www.youtube-nocookie.com/embed/e-JPKe3ySZY?start=764&end=1502" title="GaussiGAN presentation"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+      </div>
+      <p class="centerContent muted">GaussiGAN presentation (10&nbsp;mins) at <a href="http://visual.cs.brown.edu/aicc2021/">AI for Content Creation @ CVPR 2021</a>.</p>
+    </section>
 
-		<h1>Generating Object Stamps&mdash;Precursor in 2D</h1>
+    <section id="code-section">
+      <h2 id="code">Code</h2>
+      <ul>
+        <li><a href="https://github.com/AlamiMejjati/GaussiGAN">GaussiGAN (model)</a> &mdash; the TensorFlow&nbsp;1 training and inference code. We train a shape model and a texture model per dynamic object from scratch (shell scripts), or run inference from pretrained weights; static objects use their own mask and texture generators. Requires CUDA&nbsp;10, TensorFlow&nbsp;GPU&nbsp;1.12, and Tensorpack, with datasets and pretrained models downloaded separately.</li>
+        <li><a href="https://github.com/brownvc/GaussiGAN-flask-app">GaussiGAN interactive demo (Flask)</a> &mdash; the interactive web app for the paper. We draw a bounding box on a background image, then translate, rotate, scale, and re-depth the 3D Gaussians in the browser and press Enter to synthesise the result. Runs on Python&nbsp;3.7 with TensorFlow&nbsp;1.15 and Flask; a GPU is optional, as CPU-only TensorFlow works.</li>
+      </ul>
+    </section>
 
-		<p class="phototext" style="max-width: 45em;">
-		<a href="https://yamejjati.me/">Youssef A. Mejjati</a>, <a href="https://szj.io/">Zejiang Shen</a>, <a href="https://michaelsnower.com/">Michael Snower</a>, <a href="https://skylion007.github.io/">Aaron Gokaslan</a>, <a href="http://www.oliverwang.info/">Oliver Wang</a>, <a href="http://www.jamestompkin.com/">James Tompkin</a>, <a href="https://sites.google.com/view/kimki">Kwang In Kim</a>
-		<br>
-    	<br>
-		<a href="http://visual.cs.brown.edu/aicc2020/">CVPR Workshop on AI for Content Creation (AICC) 2020</a><br>
-		(4-page extended abstract)
-		</p>
+    <section id="citation-section">
+      <h2 id="citation">Citation</h2>
+      <pre class="citation"><code>@inproceedings{Mejjati_2021,
+    series    = {BMVC 2021},
+    title     = {GaussiGAN: Controllable Image Synthesis with 3D Gaussians from Unposed Silhouettes},
+    url       = {http://dx.doi.org/10.5244/C.35.183},
+    DOI       = {10.5244/c.35.183},
+    booktitle = {Proceedings of the British Machine Vision Conference 2021},
+    publisher = {British Machine Vision Association},
+    author    = {Mejjati, Youssef Alami and Milefchik, Isa and Gokaslan, Aaron K and Wang, Oliver and Kim, Kwang In and Tompkin, James},
+    year      = {2021},
+    collection= {BMVC 2021}
+}</code></pre>
+    </section>
 
-		<img src="assets/genobjectstamps_teaser.png" class="center">
-		
-		<p>
-			<em>Top row: Given a user-provided background image, object class (giraffe), and bounding box (far left), our method generates objects with diverse shapes and textures (right). Bottom row: We combine multiple object classes across scenes and match illumination.</em>
-		</p>
+    <!-- ============ Paper 2: Generating Object Stamps (precursor) ============ -->
 
-		<h2>Abstract</h2>
-		<p>
-		We present an algorithm to generate diverse foreground objects and composite them into background images using a GAN architecture. Given an object class, a user-provided bounding box, and a background image, we first use a mask generator to create an object shape, and then use a texture generator to fill the mask such that the texture integrates with the background. By separating the problem of object insertion into these two stages, we show that our model allows us to improve the realism of diverse object generation that also agrees with the provided background image. Our results on the challenging COCO dataset show improved overall quality and diversity compared to state-of-the-art object insertion approaches.
-		</p>
+    <h1 class="project-title">
+      Generating Object Stamps
+      <span class="subtitle">Precursor in 2D</span>
+    </h1>
+    <p class="venue">AI for Content Creation (AI4CC) @ CVPR, 2020</p>
 
-		<table style="min-width: 625px; margin: auto; text-align: center;">
-			<tbody>
-			<tr>
-				<td>
-					<a href="https://arxiv.org/abs/2001.02595" target="_blank"><img class="teaser-image" width="100px" src="assets/genobjectstamps_paper.png"></a>
-				</td>
-				<td>
-					<a href="https://github.com/AlamiMejjati/GeneratingObjectStamps" target="_blank"><img class="teaser-image" width="100px" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"></a>
-				</td>
-			</tr>
-			<tr>
-				<td valign="top">
-					<a href="https://arxiv.org/abs/2001.02595" target="_blank">Paper&mdash;arXiv</a><br>(8-pages + supplemental)
-				</td>
-				<td valign="top">
-					<a href="https://github.com/AlamiMejjati/GeneratingObjectStamps" target="_blank">Code</a>
-				</td>
-		  	</tr>
-			</tbody>
-		</table>
+    <div class="authors">
+      <span class="author"><a href="https://yamejjati.me/" target="_blank" rel="noopener">Youssef A. Mejjati</a>,</span>
+      <span class="author"><a href="https://szj.io/" target="_blank" rel="noopener">Zejiang Shen</a>,</span>
+      <span class="author"><a href="https://michaelsnower.com/" target="_blank" rel="noopener">Michael Snower</a>,</span>
+      <span class="author"><a href="https://skylion007.github.io/" target="_blank" rel="noopener">Aaron Gokaslan</a>,</span>
+      <span class="author"><a href="http://www.oliverwang.info/" target="_blank" rel="noopener">Oliver Wang</a>,</span>
+      <span class="author"><a href="https://www.jamestompkin.com/" target="_blank" rel="noopener">James Tompkin</a>,</span>
+      <span class="author"><a href="https://sites.google.com/view/kimki" target="_blank" rel="noopener">Kwang In Kim</a></span>
+    </div>
 
+    <nav class="resource-row">
+      <a href="https://arxiv.org/abs/2001.02595">arXiv</a>
+      <a href="https://github.com/AlamiMejjati/GeneratingObjectStamps">Code</a>
+    </nav>
 
-		<h2>Bibtex</h2>
-    	<PRE style="max-width: 625px; margin: auto;">@inproceedings{mejjati2020objectstamps,<br> author = {Youssef A. Mejjati and Zejiang Shen and Michael Snower and Aaron Gokaslan and Oliver Wang and James Tompkin and Kwang In Kim},<br> title = {Generating Object Stamps},<br> booktitle = {Computer Vision and Pattern Recognition Workshop on AI for Content Creation (CVPRW)},<br> month = {June},<br> year = {2020},<br>}
-		</PRE>
+    <figure>
+      <img src="./assets/genobjectstamps_teaser.png" alt="Object Stamps compositing giraffes and other objects into background scenes">
+      <figcaption>Top row: given a user-provided background image, object class (giraffe), and bounding box (far left), our method generates objects with diverse shapes and textures (right). Bottom row: we combine multiple object classes across scenes and match illumination.</figcaption>
+    </figure>
 
-		<hr>
+    <section id="abstract-2-section">
+      <h2 id="abstract-2">Abstract</h2>
+      <p>
+        We present an algorithm to generate diverse foreground objects and composite them into background images using a GAN architecture. Given an object class, a user-provided bounding box, and a background image, we first use a mask generator to create an object shape, and then use a texture generator to fill the mask such that the texture integrates with the background. By separating the problem of object insertion into these two stages, we show that our model allows us to improve the realism of diverse object generation that also agrees with the provided background image. Our results on the challenging COCO dataset show improved overall quality and diversity compared to state-of-the-art object insertion approaches.
+      </p>
+    </section>
 
-		<h1>Related projects</h1>
+    <section id="citation-2-section">
+      <h2 id="citation-2">Citation</h2>
+      <pre class="citation"><code>@inproceedings{mejjati2020objectstamps,
+    author    = {Youssef A. Mejjati and Zejiang Shen and Michael Snower and Aaron Gokaslan and Oliver Wang and James Tompkin and Kwang In Kim},
+    title     = {Generating Object Stamps},
+    booktitle = {Computer Vision and Pattern Recognition Workshop on AI for Content Creation (CVPRW)},
+    month     = {June},
+    year      = {2020}
+}</code></pre>
+      <p class="muted">The linked PDF is the full 8-page paper; the AI4CC version is a 4-page extended abstract.</p>
+    </section>
 
-		<ul>
-			<li><a href="https://arxiv.org/abs/1806.02311">Unsupervised Attention-guided Image-to-image Translation (NeurIPS 2018)</a> | <a href="https://github.com/AlamiMejjati/Unsupervised-Attention-guided-Image-to-Image-Translation">Code on Github</a></li>
-			<li><a href="http://arxiv.org/abs/1808.04325">Improving Shape Deformation in Unsupervised Image-to-image Translation (ECCV 2018)</a> | <a href="https://github.com/brownvc/ganimorph/">Code on Github</a></li>
-		</ul>
+    <!-- ==================== Shared closing sections ==================== -->
 
-		<hr>
+    <section id="related-section">
+      <h2 id="related">Related Projects</h2>
+      <ul>
+        <li><a href="https://arxiv.org/abs/1806.02311">Unsupervised Attention-guided Image-to-image Translation (NeurIPS 2018)</a> &mdash; <a href="https://github.com/AlamiMejjati/Unsupervised-Attention-guided-Image-to-Image-Translation">Code</a></li>
+        <li><a href="http://arxiv.org/abs/1808.04325">Improving Shape Deformation in Unsupervised Image-to-image Translation (ECCV 2018)</a> &mdash; <a href="https://github.com/brownvc/ganimorph/">Code</a></li>
+      </ul>
+    </section>
 
-		<h1>Related presentations</h1>
+    <section id="presentations-section">
+      <h2 id="presentations">Presentations</h2>
+      <ul>
+        <li><a href="https://youtu.be/oLSoCxOsSVc?t=3073">Learning Controls through Structure</a> (60&nbsp;mins) at <a href="https://www.reddit.com/r/2D3DAI/">2D3DAI, 19 April 2021</a> &mdash; <a href="https://1drv.ms/p/s!AmX25rlPIA7hjvReGKBrNq-lYzqXvA?e=Rst2ln">slides (PPTX 158&nbsp;MB)</a></li>
+        <li><a href="https://youtu.be/0hC1Gkfn-aw">Deep Learning for Content Creation Tutorial</a> (30&nbsp;mins) at <a href="https://nvlabs.github.io/dl-for-content-creation/">CVPR 2019</a> &mdash; <a href="https://1drv.ms/p/s!AmX25rlPIA7hjvRd641I-IDVOBWWmA?e=5fKqzv">slides (PPTX 58&nbsp;MB)</a></li>
+      </ul>
+    </section>
 
-		<table style="min-width: 625px; margin: auto; text-align: center;">
-			<tbody>
-				<tr>
-					<td><a href="https://youtu.be/oLSoCxOsSVc?t=3073">Learning Controls through Structure</a><br>(60 mins, YouTube) @ <a href="https://www.reddit.com/r/2D3DAI/">2D3DAI 2021-04-19</a></td>
-					<td><a href="https://youtu.be/0hC1Gkfn-aw">Deep Learning for Content Creation Tutorial</a><br>(30 mins, YouTube) @ <a href="https://nvlabs.github.io/dl-for-content-creation/">CVPR 2019</a></td>
-				</tr>
-				<tr>
-					<td>
-						<iframe width="300" src="https://www.youtube.com/embed/oLSoCxOsSVc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-					</td>
-					<td>
-						<iframe width="300" src="https://www.youtube.com/embed/0hC1Gkfn-aw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-					</td>
-				</tr>
-				<!-- <tr>
-					<td><a href="https://youtu.be/oLSoCxOsSVc?t=3073"><img src="assets/presentation_2d3dai2021.png" width=50%></a></td>
-					<td><a href="https://youtu.be/0hC1Gkfn-aw"><img src="assets/presentation_cvpr2019.png" width=50%></a></td>
-				</tr> -->
-				<tr>
-					<td><a href="https://1drv.ms/p/s!AmX25rlPIA7hjvReGKBrNq-lYzqXvA?e=Rst2ln">(PPTX 158MB)</a></td>
-					<td><a href="https://1drv.ms/p/s!AmX25rlPIA7hjvRd641I-IDVOBWWmA?e=5fKqzv">(PPTX 58MB)</a></td>
-				</tr>
-			</tbody>
-		</table>
+    <section id="acknowledgements-section">
+      <h2 id="acknowledgements">Acknowledgements</h2>
+      <p>
+        <em>GaussiGAN:</em> We thank Numair Khan for the dataset generator, and Helge Rhodin and Srinath Sridhar for engaging discussions. Kwang In Kim was supported by the National Research Foundation of Korea (NRF) grant NRF-2021R1A2C2012195, and we thank an Adobe gift.
+      </p>
+      <p>
+        <em>Generating Object Stamps:</em> Youssef A. Mejjati thanks the European Union's Horizon 2020 research and innovation programme under the Marie Sk&#322;odowska-Curie grant agreement No 665992, and the UK's EPSRC Centre for Doctoral Training in Digital Entertainment (CDE), EP/L016540/1. James Tompkin and Kwang In Kim thank gifts from Adobe.
+      </p>
+      <p class="muted">
+        Zip icon adapted from <a href="http://untergunter.deviantart.com/art/Tastic-Mimetypes-416037885">Tastic Mimetypes</a> by <a href="http://untergunter.deviantart.com/">Untergunter</a>, CC BY-NC-SA 3.0 licence.
+      </p>
+    </section>
 
+    <footer class="logos">
+      <span data-logo="bath"></span>
+      <span data-logo="brown-cs"></span>
+      <span data-logo="unist"></span>
+      <span data-logo="cornell"></span>
+      <span data-logo="adobe"></span>
+    </footer>
 
-		<h2>Acknowledgements</h2>
-
-		<p>
-		<em>GaussiGAN:</em> Thank you to Numair Khan for the dataset generator, and for engaging discussions with Helge Rhodin and Srinath Sridhar. Kwang In Kim was supported by the National Research Foundation of Korea (NRF) grant NRF-2021R1A2C2012195, and we thank an Adobe gift.
-		</p>
-
-		<p>
-		<em>Generating Object Stamps:</em> Youssef A. Mejjati thanks the European Union’s Horizon 2020 research and innovation program under the Marie Sklodowska-Curie grant agreement No 665992, and the UK’s EPSRC Center for Doctoral Training in Digital Entertainment (CDE), EP/L016540/1. James Tompkin and Kwang In Kim thank gifts from Adobe.
-		</p>
-
-		<p>
-			Zip icon adapted from <a href="http://untergunter.deviantart.com/art/Tastic-Mimetypes-416037885">tastic mimetypes</a> by <a href="http://untergunter.deviantart.com/">Untergunter</a>, CC BY-NA-SA 3.0 licence.
-		</p>
-
-		<table style="min-width: 625px; margin: auto; text-align: center;">
-			<tbody>
-				<tr>
-					<td>
-						<img src="assets/logos/UBathLogo.png" width=150px style="margin-right: 20px">
-					</td>
-					<td>
-						<div></div>
-					</td>
-					<td>
-						<a href="http://visual.cs.brown.edu/"><img src="assets/logos/BrownCSLogo.png" width=150px style="margin-right: 10px"></a>
-					</td>
-					<td>
-						<img src="assets/logos/UNISTLogo.png" width=150px style="margin-right: 10px">
-					</td>
-					<td>
-						<img src="assets/logos/CornellLogo.png" width=75px style="margin-right: 10px">
-					</td>
-					<td>
-						<img src="assets/logos/AdobeLogo.png" width=150px>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-
-		<!-- Little bit of space -->
-		<p></p>
-	</div>
+  </main>
 </body>
+
+</html>
